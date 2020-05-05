@@ -1,49 +1,36 @@
+# Computer Vision
+
+## What you can find in this repository
+
+Here, you will find the books that I have read about image processing and computer vision, notes and useful python programs that you analize and run in your compute, understaing how image process works and learning how modules like pillow e cv2 work (open CV).
+
+1. [What you can find in this repository](#What-you-can-find-in-this-repository)
+2. [How to Contribute](#How-to-contribute)
+3. [System requirements](#Requirements)
+4. [Let's connect with me](#Connect-with-me)
+
+
+## How to contribute
+1. Fork the repository
+2. Do the desired changes (add/delete/modify)
+3. Make a pull request
+
+## Mind that
+Constructive criticisms or code reviews of any kind are very much welcome.
+
+If you have any questions about the solutions you can find here, feel free to contact me at: [davidepollicino2015@gmail.com](mailto:davidepollicino2015@gmail.com?subject=[GitHub]%20ComputerVisionRepo)
+
 ## Requirements
 
+* Python interpreter
 * Numpy ```pip3 install numpy```
 * [CV2: Linux demo installation](https://docs.opencv.org/3.4/d2/de6/tutorial_py_setup_in_ubuntu.html) 
 * matplotlib
+* Pillow ```pip install pillow```
 
-#### Numpy
 
-General-purpse array-processing package, with high performance with multiple arrays (remember, an image is a 2D: array).
+## Connect with me
 
-Numpy can be used to integrate also C/c++ and Fortran code.
-
-#### Matplotilib
-
-Python library that allows to manipulate an image, modifying it's properties, style, zoom in and zoom out. 
-
-#### CV2
-OpenCV-Python is a library designed to solve computer vision problems.
-
-### CV:  Show an image
-
- ````
-import numpy as np
-
-import cv2 as cv
-
-# Load an image , the 0 paramenteer will convert the img in black and white
-img = cv.imread('../media/palermo.jpg')
-
-# Show the image in a window where: 
-# 1rst parameter is the window title and the 2nd is the image to show
-
-cv.imshow('image', img)
- ```
-
-Fetch an image:
-```
-# Fetch the image and show it gray scale
-cv2.imread('mypic.png', 0)
-# OR
-cv2.imread_grayscale('mypic.pnj')  
-```
-```
-# Fetch the image and show it with it's origina colors
-cv2.imread('mypic.png', 1)
-# OR
-cv2.imread_color('mypic.png')
-
-```
+* [davidepollicino2015@gmail.com](mailto:davidepollicino2015@gmail.com?subject=[GitHub]%20CompetitiveProgrammigGuide)
+* [Linkedin](https://www.linkedin.com/in/davidepollicino7/)
+* [www.davidepollicino.com](http://davidepollicino.com/)

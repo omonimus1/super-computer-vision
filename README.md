@@ -4,6 +4,14 @@
 
 Here, you will find the books that I have read about image processing and computer vision, notes and useful python programs that you analize and run in your compute, understaing how image process works and learning how modules like pillow e cv2 work (open CV).
 
+1. [Image processing with Pillow](source/work-with-pillow/)
+2. [Image filters with Pillow](source/work-with-pillow/filters/)
+3. [Image Processing with Open CV](source/open-cv/)
+4. [Notes](NOTES.md)
+5. [Readins materials](books/)
+
+## Index
+
 1. [What you can find in this repository](#What-you-can-find-in-this-repository)
 2. [How to Contribute](#How-to-contribute)
 3. [System requirements](#Requirements)

@@ -112,7 +112,7 @@ OpenCV-Python is a library designed to solve computer vision problems.
 
 ### CV:  Show an image
 
- ````
+```
 import numpy as np
 
 import cv2 as cv
@@ -125,7 +125,6 @@ img = cv.imread('../media/palermo.jpg')
 
 cv.imshow('image', img)
  ```
-
 Fetch an image:
 ```
 # Fetch the image and show it gray scale
@@ -139,3 +138,60 @@ cv2.imread('mypic.png', 1)
 # OR
 cv2.imread_color('mypic.png')
 ```
+
+# Image derivatives
+
+An image derivative is defined as the change in the pixel value of an image.
+Given an image matrix, we can find the derivative using another matrix called mask or kernel. 
+
+## Kernel in Image processing
+
+What is a kernel matrix?
+A Kernel, convolution matrix or mask is a small matrix. It is used for edge dection and sharpening of an image, by doing a convoluton between a kernel and image.
+Convolution is the process of adding each element of the image to its local neighbors, weighted by the kernel. This is related to a form of mathematical convolution. The matrix operation being performed—convolution—is not traditional matrix multiplication, despite being similarly denoted by "*".
+
+For example, if we have two three-by-three matrices, the first a kernel, and the second an image piece, convolution is the process of flipping both the rows and columns of the kernel and multiplying locally similar entries and summing. The element at coordinates [2, 2] (that is, the central element) of the resulting image would be a weighted combination of all the entries of the image matrix, with weights given by the kernel:
+
+Convulation is defined as the sum of the product of the corresponding elements of a kernel matri to an image matrix. 
+Let's try to understand what this means. 
+Given a kernel, multiply the curresponsing elements of the image matrix and kernel matrix, and sum the multiplied values centered around a particular pixel in the image. In a new empty (black) image, set
+the corresponding pixel from the original image to the sum of multiplied values.
+Now, perform this operation for all the pixels in the original image. This is image
+convolution!
+
+![convulation](tutorial_medias/convulation.png)
+
+![Convulation result](tutorial_medias/convulation_result.png)
+
+
+## Image filters
+
+Enhance an image, as we have seen in the [enhance brigthness example](source/with-with-pillow/brightness_enhancement.py), is done by applying a function on the pixel value and this operation is called **filtering**.
+
+The most used and popular filters are:
+* Gaussian Blur
+```
+# Guassian Blur Application with Pillow
+from PIL import Image
+from PIL import ImageFilter
+
+# Fetch original image
+img = Image.open('../../media/bwm.jpeg')
+# Show original image
+img.show()
+# Apply the Guassian Blur filter to the image
+filterd_image = img.filter(ImageFilter.GaussianBlur)
+# Show filtered image
+filterd_image.show()
+```
+![Gaussian Blu application result](tutorial_medias/gaussianApplication.png)
+
+
+* Median Filter
+* Dilation and erosion
+* Customs filters
+* Image threesholding
+
+
+
+

@@ -185,10 +185,37 @@ filterd_image = img.filter(ImageFilter.GaussianBlur)
 filterd_image.show()
 ```
 ![Gaussian Blu application result](tutorial_medias/gaussianApplication.png)
+```
+# Guassian filter wit skimage
+from skimage import io 
+from skimage import filters
 
+img = io.imread('../../media/bwm.jpeg')
+filtered_image = filters.gaussian(img, sigma =0.5)
+io.imshow(filtered_image)
+io.show()
+```
 
 * Median Filter
+Median Filter is a non-linear digital filtering techinique used to remove noise from an image or signal. This noise reduction is usually a pre-processing step to improve the result of later processing (for example, edge detection of an image).
+
+Image noise: random variation of brightness or color information in imaqes, and is usually an aspect of electronicnoise. 
+```
+from PIL import Image
+from PIL import ImageFilter
+
+original_image = Image.open('../../media/bwm.jpeg')
+filtered_image = original_image.filter(ImageFilter.MedianFilter(7))
+filtered_image.show()
+```
+![Median filter result](tutorial_medias/medianResult.png)
 * Dilation and erosion
+
+Morphological operations:operations that use the inherent structure of features of an image and process the image while maintaining the overall structure. The most common example are pmorphological operations are dilationa nd erosion. 
+
+**Erosion**: remove the top layer of the image.Skiimage provides the ```binary_erosion()``` function. 
+**Dilation**: is the opposite of erosion.  It is useful in situation where you you need to fill up unwanted gaps in the image. Skiimage provides the ```binary_dilation()``` function. 
+
 * Customs filters
 * Image threesholding
 

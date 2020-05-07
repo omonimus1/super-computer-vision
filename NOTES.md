@@ -217,8 +217,78 @@ Morphological operations:operations that use the inherent structure of features 
 **Dilation**: is the opposite of erosion.  It is useful in situation where you you need to fill up unwanted gaps in the image. Skiimage provides the ```binary_dilation()``` function. 
 
 * Customs filters
+Both Skiimage and pillow provide the optin of applying custom filterws on images. 
+In Pillow, the kernel function takes the size, the sequence of kernel weighs, scale and offset of the image as parametres, where size is the size of the matrix, scale isthe vaue by which the result of the pixel is divided and offset is the value that is added to result after scaling. 
+
 * Image threesholding
 
+## Edge detection - foundamentals concepts
 
+Edge in an image: are significant local changes in the image intensity, usually associated with a discontinuity in either the image intensity or the first derivate of the image itnensity. Edge detection is frequently the first step in recovering information from images. #
 
+Edge point: is a point in an image with coordinates[i,j] at the local fo a significant locan intensity change in the image. 
 
+Edge decector: algorithm that produces a set of edges from an image.
+
+Countour: list of edges or the mathematrical curve that models the list of edges.
+
+Edge linking: process of forming anordered list of edges from an unordered list. By default, edges are ordered by traversal in a clockwise direction. 
+
+## Edge detection with scikit-image - sobel
+
+Sobel uses
+
+```
+from skimage import io 
+from skimage import filters
+from skimage import color
+
+image_to_analize = io.imread('../media/bwm.jpeg')
+# Convert picture from RBG to gray channel
+image_to_analize = color.rgb2gray(image_to_analize)
+edge_of_the_image = filters.sobel(image_to_analize)
+io.imshow(edge_of_the_image)
+io.show()
+```
+![tutorial_media/edge_detection.png]
+
+## Canny edge detector
+
+The cannyt edge detector is anoher very important algorithm.
+It uses as Sobel edge detector the concept of gradients
+
+Canny edge decector uses has four steps:
+1. Smoothing: reduce noise in the image applying th Guassian Filter
+2. Find the gradient: find the
+gradient magnitude and direction by calculating the x-derivative and y-
+derivative. The direction is important, as the gradient is always perpendicular to
+the edge.
+3. Nonmaximal suppression: In this step, we check whether the gradient
+calculated is the maximum among the neighboring points lying in the positive
+and negative direction of the gradient; that is, whether it is the local maxima in
+the direction of the gradient. If it is not the local maxima, then that point is not
+part of an edge.
+4. Threesolding: in Canny we use hih and low threshold value. This is called hysteresis thresholding. Let's understand how this works.
+We select all the edge points, which are above the high threshold and then we
+see if there are neighbors of these points which are below the high threshold but
+above the low threshold; then these neighbors will also be part of that edge. But
+if all the points of an edge are below the high threshold, then these points will
+not be selected.
+
+```
+from skimage import io 
+from skimage import feature
+from skimage import color
+
+image_to_analize = io.imread('../../media/bwm.jpeg')
+
+gray_image = color.rgb2gray(image_to_analize)
+edge_detection = feature.canny(gray_image)
+io.imshow(edge_detection)
+io.show()
+```
+![Canny edge detector](tutorial_medias/canny_edge.png)
+
+## Hough Line
+
+-83

@@ -304,3 +304,73 @@ A method to detect cornes in an image to first find all the edges in the image a
 
 Withteh Harris corner detector, we slide a window over an image to calculate the variation in intensity because cornes will have large variations in the intensity around them.
 
+```
+from matplotlib import pyplot as plot
+from skimage import io 
+from skimage.color import rgb2gray
+from skimage.feature import corner_harris , corner_subpix, corner_peaks
+```
+corner_hassis: function where each pixel in the image calculates a mesure of how probable is that the pixel is a corner pixel. 
+conver_peaks: use the output of the corner_harris to find the actual cornrs points in the image using measure provided by the canrner_harris function.  It returns the crner pixel coordinated, sued to be plot on the image. 
+
+corner_subpix: it differentiate if the poin is the intersection of two edges or it is really a corner.
+
+```
+# Get corners of an image 
+from matplotlib import pyplot as plot
+from skimage import io 
+from skimage.color import rgb2gray
+from skimage.feature import corner_harris , corner_subpix, corner_peaks
+
+# Read the Image
+image = io.imread('../media/bwm.jpeg')
+image = rgb2gray(image)
+
+# COmpute the Harris Cornes in the image
+# It returns a corner measure response
+corners = corner_harris(image)
+
+# Caulcatute the actualt corners in the image
+coords = corner_peaks(corners, min_distance=5)
+
+# Decided if the corner point is an edge point or an isolated peak
+coord_subpix = corner_subpix(image, coords)
+
+fig, ax = plot.subplots()
+ax.imshow(image, interpolation='nearest', cmap=plot.cm.gray)
+ax.plot(coords[:, 1], coords[:, 0], '.b', markersize=3)
+ax.plot(coord_subpix[:, 1], coord_subpix[:, 0], '+r')
+ax.axis((0, 350, 350, 0))
+plot.show()
+```
+
+![Harris Corner detection result]('../tutorial_medias/harrisCorners.png')
+
+## Local Binary Patterns
+
+In LBP, an eigth-bit binary feature vector is created for each pixel in the image by considering the height neighbouring pixels. 
+
+## Oriented FAST and Rotated BRIEF (ORB)
+
+Oriented FAST and Rotated BRIEF was dveloped at OpenCV. 
+ORB performs as well as SIFT on the task of feature detection (and is between and SURF).
+
+## Image stitching
+
+Is at the base of the capturing panorama function present in many smartphones. 
+Paronarama images are based on the conceptf of image sticthing.
+
+To stichtwo images toghether, the first thing is to find common points between the images. Once we have the matching points, we alignt them on op of each other.
+
+### Segmentation
+
+Segment an image: process that breaks down an image into smaller regions that individually hold meaningful information and help us understand the overallcontent of the image. 
+
+All the segmentations algorithms interally use clustering of pixels based on their color values. The only difference between these algorithm that used for clustering.  
+
+
+## Color detection
+
+COlor detection is the easiest form of segmentation. 
+A contour detection algorithm will try to group edges togehter will result in a closed loop.
+

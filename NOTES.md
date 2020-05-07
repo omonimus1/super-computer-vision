@@ -289,6 +289,18 @@ io.show()
 ```
 ![Canny edge detector](tutorial_medias/canny_edge.png)
 
-## Hough Line
+## Object Detection
 
--83
+Image gradiants and edges give us a lot of information about the shapes of different objects in the image. Using edges, wemight also be able to determine the orientation of the objects in the image most of the times. 
+
+First of all, when working with images we need to their descriptive features.
+A good feature should be inviariant to changes in scale, rotation and translations. 
+
+Advanced and important feature descriptiors are corners, Local Binary Pattern(LBP), BRISK and Oriented Fast and Rotated BRIEF. 
+
+## Harris Corner detection
+
+A method to detect cornes in an image to first find all the edges in the image and then pairwise check if the edges if the edges intersect.  This is very inefficient and somotimes impossible to apply. 
+
+Withteh Harris corner detector, we slide a window over an image to calculate the variation in intensity because cornes will have large variations in the intensity around them.
+

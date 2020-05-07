@@ -3,7 +3,7 @@ from PIL import ImageFilter
 
 
 # Fetch original image
-img = Image.open('../../media/bwm.jpeg')
+img = Image.open('../media/bwm.jpeg')
 # Show original image
 img.show()
 # Apply the Guassian Blur filter to the image

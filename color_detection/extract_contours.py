@@ -1,3 +1,4 @@
+"""
 from skimage import measure
 from skimage.io import imread
 from skimage.color import rgb2gray
@@ -28,3 +29,5 @@ ax.set_xticks([])
 ax.set_yticks([])
 
 plot.show()
+"""
+

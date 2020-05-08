@@ -374,3 +374,43 @@ All the segmentations algorithms interally use clustering of pixels based on the
 COlor detection is the easiest form of segmentation. 
 A contour detection algorithm will try to group edges togehter will result in a closed loop.
 
+## Watershed Algorithm
+
+It allows to fill out objects/regions of the image with a unique color.An example could be filll out all the craters of the moon.
+
+The watershed algorithm works in the following way:
+1. Get the image to analize and convert it in grayscale
+2. Convert the image pixel values to unsigned int using the img_as_ubyte() function.
+3. Calculate the local gradients fo the image
+4. Apply the Watershed algorithm.
+
+
+## SuperPixels
+
+Superpixel is a color detection tecnique that does not analize every possible pixel of the image but remove redundancy in the pixels of an image, trying to combining pixels closer to each other that have the same color value into a cluster and then call those clusters superpixels.  
+
+Superpixel: set of pixels possible similars. 
+```
+from skimage import segmentation, color
+from skimage import io
+from skimage.future import graph
+from matplotlib import pyplot as plt
+img = io.imread('../media/animal.jpeg')
+
+img_segments = segmentation.slic(img, compactness=10, n_segments=700)
+superpixel_image = color.label2rgb(img_segments, img, kind='avg')
+
+io.imshow(superpixel_image)
+io.show()
+```
+![Original Image](media/animal.jpeg)  ![Result](tutorial_medias/superpixel.png
+
+## Normalized Graph cut
+
+Is the most popular image segmentation technique today.
+Each pixel of the image is trhreated as a node and all the pixels are connected to all of its adjacent pixel and andeach to the object node.
+
+
+In this algorithm, we cut all the edges until we don't have any more subgraphs. This will mean that each pixel of the image will be connected to one object.
+
+

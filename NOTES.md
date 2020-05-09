@@ -414,3 +414,45 @@ Each pixel of the image is trhreated as a node and all the pixels are connected 
 In this algorithm, we cut all the edges until we don't have any more subgraphs. This will mean that each pixel of the image will be connected to one object.
 
 
+For review: The differnt image segmnetations algorithms are contour detection, superpixel, watershed and normalized graph cut. 
+
+## Integrate Machine Learning with Computer Vision 
+
+Openly available datasets for image recognitons machine learning training are CIFAR and IMAGENET for image classification. 
+
+Our Machine Learning image detections must be able to recognize an object in the image, does not matter orentation and size of the image. This will make our detection system  **robust**.
+
+Image translation though random cropping: we detect the same object but situated in different position X,Y of different images.
+Image rotation and scaling: while our algorithm is learning we provides also images rotated with random angles. 
+
+
+## Scikit-learn(sklearn)
+
+Library that provides APIs for many machine learning algorithm used in computer vision.  ```pip3 install sklearn```
+
+## Application of Machine Learning for computer vision
+
+* HandWriting recognition
+* Image detection and classification
+* Scene labeling: given an image the comuter tries to label the image: for example, F1 Player driving a car in a street. 
+* Self-driving cars
+
+## Logistic regression
+
+IS a technique that finds relationship between a set of independds variables and a dependent variable. 
+The mathematiucs behind logistic regression involves probability. Given a data point we calculate the probability of that data point beloging to a particular label. 
+
+
+## Support Vector Machines
+
+
+It si a widely used supervised machine learning algorithm that support vector machines. 
+in SVMs we try to find hyperplanes that divide the given data into
+regions, with each region representing a particular label, so it can be tought as supervised learning algorithm for classification. 
+
+
+## Image classification Using Neural Network -- 143
+
+
+
+

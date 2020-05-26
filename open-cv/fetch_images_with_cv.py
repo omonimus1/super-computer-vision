@@ -11,5 +11,5 @@ cv.imshow('image', img)
 # Store the image locally
 cv.imwrite('stored-pic.jpg', img)
 
-cv.waitKey(10)
-cv.destroyAllWindows()
+cv2.waitKey(10)
+cv2.destroyAllWindows()

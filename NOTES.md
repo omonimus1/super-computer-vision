@@ -258,22 +258,24 @@ The cannyt edge detector is anoher very important algorithm.
 It uses as Sobel edge detector the concept of gradients
 
 Canny edge decector uses has four steps:
-1. Smoothing: reduce noise in the image applying th Guassian Filter
-2. Find the gradient: find the
+1. **Smoothing:** reduce noise in the image applying th Guassian Filter
+2. **Find the gradient:** find the
 gradient magnitude and direction by calculating the x-derivative and y-
 derivative. The direction is important, as the gradient is always perpendicular to
 the edge.
-3. Nonmaximal suppression: In this step, we check whether the gradient
+3. **Nonmaximal suppression:** In this step, we check whether the gradient
 calculated is the maximum among the neighboring points lying in the positive
 and negative direction of the gradient; that is, whether it is the local maxima in
 the direction of the gradient. If it is not the local maxima, then that point is not
 part of an edge.
-4. Threesolding: in Canny we use hih and low threshold value. This is called hysteresis thresholding. Let's understand how this works.
+4. **Threesolding:** in Canny we use hih and low threshold value. This is called hysteresis thresholding. Let's understand how this works.
 We select all the edge points, which are above the high threshold and then we
 see if there are neighbors of these points which are below the high threshold but
 above the low threshold; then these neighbors will also be part of that edge. But
 if all the points of an edge are below the high threshold, then these points will
 not be selected.
+
+![Types-of-thresholding](turoail_medias/types_of_thresholding.png)
 
 ```
 from skimage import io 
@@ -454,5 +456,47 @@ regions, with each region representing a particular label, so it can be tought a
 ## Image classification Using Neural Network -- 143
 
 
+## OpenCV : cv2
+
+```
+# Cropping an image
+import cv2
+
+# Fetch image
+image_to_analize = cv2.imread('../media/animal.jpeg')
+roi = image_to_analize[0:100, 40:350]
+cv2.imwrite('../media/image_cropped_cv2.jpeg', roi)
+cv2.imshow("CroppedPic", roi)
+cv2.imshow("Original Image", image_to_analize)
+cv2.waitKey(0)
+```
+![Cropped cv2](tutorial_medias/cropped_with_opencv.png)
+
+## Thresholding with OpenCV
 
 
+```
+import cv2
+image_to_analize = cv2.imread("../media/animal.jpeg")
+gray_image = cv2.cvtColor(image_to_analize, cv2.COLOR_BGR2GRAY)
+new_img = cv2.threshold(gray_image,120,255,cv2.THRESH_BINARY)
+cv2.imwrite("thresholding.jpg", new_img[1])
+cv2.waitKey(10)
+```
+![Origial pic thresholding](media/animal.jpeg)    
+![Thresholding cv2](open-cv/thresholding.jpg)
+
+## Erosion with OpenCV
+
+```
+import cv2
+import numpy as np 
+
+image_to_analize = cv2.imread("../media/bwm.jpeg")
+ker = np.ones((5,5), np.uint8)
+# Apply erosion to the image
+new_image = cv2.erode(image_to_analize, ker, iterations = 1)
+# Store the new image 
+cv2.imwrite("erosion.jpg", new_image)
+```
+![Erosion-open-cv-example](open-cv/erosion.jpg)

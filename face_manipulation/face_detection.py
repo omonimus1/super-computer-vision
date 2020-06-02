@@ -1,7 +1,7 @@
 import cv2
 
 # Load cascade face dection .xml file
-face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
+face_cascade = cv2.CascadeClassifier('../cascades/cahaarcascade_frontalface_default.xml')
 
 # capture frames from a camera
 cap  = cv2.VideoCapture(0)
@@ -20,7 +20,7 @@ while(1):
     for (x, y, w, h) in faces:
         cv2.rectangle(frame, (x,y), (x+w, y+w), (255,0,0),2)
 
-      # Display the frame
+    # Display the frame
     cv2.imshow('Camera', frame)
     
     # Wait for 25 ms

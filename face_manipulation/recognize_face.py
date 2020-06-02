@@ -1,50 +1,59 @@
-"""
-Author: Davide Polliicno
-Date: 02/06/2020
-Summary: Use deep learned models like keras, tensortflow, pythorc, scikit learn
-    to do a face recognition after face detection. 
-"""
-
 import numpy as np
 import cv2
+import pickle
 
-face_cascade = cv2.CascadeClassifier('../cascades/haarcascade_frontalface_alt2.xml')
+face_cascade = cv2.CascadeClassifier('cascades/data/haarcascade_frontalface_alt2.xml')
+eye_cascade = cv2.CascadeClassifier('cascades/data/haarcascade_eye.xml')
+smile_cascade = cv2.CascadeClassifier('cascades/data/haarcascade_smile.xml')
+
+
+recognizer = cv2.face.LBPHFaceRecognizer_create()
+recognizer.read("trainner.yml")
+
+labels = {"person_name": 1}
+with open("face-labels.pickle", 'rb') as f:
+	og_labels = pickle.load(f)
+	labels = {v:k for k,v in og_labels.items()}
+
 cap = cv2.VideoCapture(0)
+
 while(True):
-    # Capture frame by camera
+    # Capture frame-by-frame
     ret, frame = cap.read()
-    gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-
-    # ScaleFactor: indicate the accurecy of the face detection
+    gray  = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
     faces = face_cascade.detectMultiScale(gray, scaleFactor=1.5, minNeighbors=5)
-    
-
     for (x, y, w, h) in faces:
-        print(x,y,w,h) # Show the coordinates of my Region of interest (my face)
-        roi_gray = gray[y: y+h, x:x+w]
+    	#print(x,y,w,h)
+    	roi_gray = gray[y:y+h, x:x+w] #(ycord_start, ycord_end)
+    	roi_color = frame[y:y+h, x:x+w]
 
-        img_iteam='my-image.png'
-        """
-        When we stop the program, it will save a picture that will contain
-        just our Region of Interest (ROI) - my face
-        """
-        cv2.imwrite(img_iteam, roi_gray)
-    
-        # BGR color of the rectangle draw around the face
-        color = (255,0,0)
-        # Width of the rectangle side
-        stroke = 2
-        # Create rectangle with specific dimensione using coordinates
-        end_coordinate_x = x + w
-        end_coordinate_y = y + h
-        cv2.rectangle(frame, (x,y,), (end_coordinate_x, end_coordinate_y), color, stroke)
+    	# recognize? deep learned model predict keras tensorflow pytorch scikit learn
+    	id_, conf = recognizer.predict(roi_gray)
+    	if conf>=4 and conf <= 85:
+    		#print(5: #id_)
+    		#print(labels[id_])
+    		font = cv2.FONT_HERSHEY_SIMPLEX
+    		name = labels[id_]
+    		color = (255, 255, 255)
+    		stroke = 2
+    		cv2.putText(frame, name, (x,y), font, 1, color, stroke, cv2.LINE_AA)
 
-    # Displa the resulting frame
-    cv2.imshow('Camera', frame)
-    # Wait for 25 ms
-    if cv2.waitKey(1) & 0xFF == ord('q'):
+    	img_item = "7.png"
+    	cv2.imwrite(img_item, roi_color)
+
+    	color = (255, 0, 0) #BGR 0-255 
+    	stroke = 2
+    	end_cord_x = x + w
+    	end_cord_y = y + h
+    	cv2.rectangle(frame, (x, y), (end_cord_x, end_cord_y), color, stroke)
+    	#subitems = smile_cascade.detectMultiScale(roi_gray)
+    	#for (ex,ey,ew,eh) in subitems:
+    	#	cv2.rectangle(roi_color,(ex,ey),(ex+ew,ey+eh),(0,255,0),2)
+    # Display the resulting frame
+    cv2.imshow('frame',frame)
+    if cv2.waitKey(20) & 0xFF == ord('q'):
         break
 
-# Releease capture when the application is over
+# When everything done, release the capture
 cap.release()
 cv2.destroyAllWindows()

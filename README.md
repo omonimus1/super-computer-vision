@@ -42,6 +42,7 @@ Explore:
 * **Keras**: nural network library based on TensorFlow2.0```pip install keras```
 * **lxml**:  library for processing XML and HTML in the Python language.```pip install lxml```
 * **testresources**: extensions to python unittest to allow declarative use of resources by test cases.```pip install testresources```
+* Face-recognition: Get the locations and outlines of each person's eyes, nose, mouth and chin.```pip3 install face-recognition``` [Github reference](https://github.com/ageitgey/face_recognition)
 
 ## How to contribute
 1. Fork the repository

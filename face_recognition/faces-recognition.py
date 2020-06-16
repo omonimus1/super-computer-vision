@@ -17,7 +17,11 @@ with open("pickles/face-labels.pickle", 'rb') as f:
 	og_labels = pickle.load(f)
 	labels = {v:k for k,v in og_labels.items()}
 
+print('Accessing to the camera')
 cap = cv2.VideoCapture(0)
+
+if not cap.isOpened():
+	print("Cannot open webcam")
 
 counter = 7
 while(True):
@@ -25,6 +29,9 @@ while(True):
 	ret, frame = cap.read()
 	gray  = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 	faces = face_cascade.detectMultiScale(gray, scaleFactor=1.2, minNeighbors=7)
+	if len(faces) == 0:
+		print("No faces found")
+		continue
 	for (x, y, w, h) in faces:
 		print(x,y,w,h)
 		roi_gray = gray[y:y+h, x:x+w] #(ycord_start, ycord_end)

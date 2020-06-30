@@ -1,0 +1,14 @@
+MANIFEST.in
+README.rst
+bench.py
+interface.pxd
+setup.cfg
+setup.py
+tesseract_ocr.cpp
+tesseract_ocr.pyx
+tesseract_ocr.egg-info/PKG-INFO
+tesseract_ocr.egg-info/SOURCES.txt
+tesseract_ocr.egg-info/dependency_links.txt
+tesseract_ocr.egg-info/not-zip-safe
+tesseract_ocr.egg-info/requires.txt
+tesseract_ocr.egg-info/top_level.txt

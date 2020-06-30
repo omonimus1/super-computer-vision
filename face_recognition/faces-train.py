@@ -20,16 +20,16 @@ for root, dirs, files in os.walk(image_dir):
 		if file.endswith("png") or file.endswith("jpg"):
 			path = os.path.join(root, file)
 			label = os.path.basename(root).replace(" ", "-").lower()
-			#print(label, path)
+			print(label, path)
 			if not label in label_ids:
 				label_ids[label] = current_id
 				current_id += 1
 			id_ = label_ids[label]
-			#print(label_ids)
-			#y_labels.append(label) # some number
-			#x_train.append(path) # verify this image, turn into a NUMPY arrray, GRAY
+			print(label_ids)
+			# y_labels.append(label) # some number
+			# x_train.append(path) # verify this image, turn into a NUMPY arrray, GRAY
 			pil_image = Image.open(path).convert("L") # grayscale
-			size = (550, 550)
+			size = (300, 300)
 			final_image = pil_image.resize(size, Image.ANTIALIAS)
 			image_array = np.array(final_image, "uint8")
 			#print(image_array)
@@ -41,8 +41,8 @@ for root, dirs, files in os.walk(image_dir):
 				y_labels.append(id_)
 
 
-#print(y_labels)
-#print(x_train)
+# print(y_labels)
+# print(x_train)
 
 with open("pickles/face-labels.pickle", 'wb') as f:
 	pickle.dump(label_ids, f)

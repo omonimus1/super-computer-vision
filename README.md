@@ -59,3 +59,7 @@ If you have any questions about the solutions you can find here, feel free to co
 * [davidepollicino2015@gmail.com](mailto:davidepollicino2015@gmail.com?subject=[GitHub]%20CompetitiveProgrammigGuide)
 * [Linkedin](https://www.linkedin.com/in/davidepollicino7/)
 * [www.davidepollicino.com](http://davidepollicino.com/)
+
+## Support me to get more material like this
+
+[PAYPAL ME](https://paypal.me/davidepollicino7?locale.x=en_US)
